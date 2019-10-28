@@ -1,9 +1,9 @@
 {
-  "name": "web-icons",
+  "name": "svg-wc-icons",
   "version": "0.1.0",
   "description": "Tool to generate webcomponent icons from svg files",
   "main": "lib/index.js",
-  "author": "<bharathnayak03@gmail.com>",
+  "author": " <bharathnayak03@gmail.com>",
   "license": "MIT",
   "scripts": {
     "build": "babel src -d lib"
@@ -21,5 +21,24 @@
     "change-case": "3.1.0",
     "svgo": "1.3.0",
     "yargs": "14.2.0"
-  }
+  },
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bharathnayak03/web-icons.git"
+  },
+  "keywords": [
+    "WebComponent",
+    "svg",
+    "Icons",
+    "WebComponent",
+    "Icon"
+  ],
+  "bugs": {
+    "url": "https://github.com/bharathnayak03/web-icons/issues"
+  },
+  "homepage": "https://github.com/bharathnayak03/web-icons#readme"
 }
