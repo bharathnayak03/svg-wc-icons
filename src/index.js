@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 /**
 Usage:
 web-icons test.svg --output test_icon.js
