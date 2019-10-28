@@ -17,6 +17,8 @@ const {
   generateClassName,
   generateCustomElementName,
   mergeConfig,
+  logSuccess,
+  logError,
 } = require('./utils');
 const generate = require('./template');
 const args = require('./args');
@@ -27,8 +29,6 @@ const {
   svgoConfig: svgoConfigPath,
   prefix,
 } = args;
-
-
 let svgoInstance;
 
 async function generateFile(options) {
@@ -36,6 +36,7 @@ async function generateFile(options) {
     srcPath,
     outputPath,
   } = options;
+
   const rawSvg = await readFile(srcPath, 'utf8');
   const optimizedSvg = await svgoInstance.optimize(rawSvg);
   ensureDirectoryExistence(outputPath);
@@ -45,11 +46,18 @@ async function generateFile(options) {
   }), {
     flag: 'w',
   });
+  logSuccess(`WebIcons: Successfully generated ${outputPath}`);
 }
 
 async function generateFiles() {
   const files = await readFilesFromDirectory(src);
-  files.forEach(async (fileName) => {
+  const svgFiles = files.filter((fileName) => path.extname(fileName) === '.svg');
+
+  if (!svgFiles.length) {
+    logError('There are no svg files in the given source directory');
+  }
+
+  svgFiles.forEach(async (fileName) => {
     const srcPath = path.resolve(src, fileName);
     const outputFileName = generateFileName(fileName, { prefix });
     const customElementName = generateCustomElementName(fileName, { prefix });
@@ -67,12 +75,17 @@ async function generateFiles() {
 }
 
 (async () => {
-  let externalConfig = {};
-  if (svgoConfigPath) {
-    const svgoConfigString = await readFile(svgoConfigPath, 'utf8');
-    externalConfig = JSON.parse(svgoConfigString);
-  }
-  svgoInstance = new Svgo(mergeConfig(svgoConfig, externalConfig));
+  try {
+    logSuccess('WebIcons: Generating WebComponents from svgs');
+    let externalConfig = {};
+    if (svgoConfigPath) {
+      const svgoConfigString = await readFile(svgoConfigPath, 'utf8');
+      externalConfig = JSON.parse(svgoConfigString);
+    }
+    svgoInstance = new Svgo(mergeConfig(svgoConfig, externalConfig));
 
-  await generateFiles();
+    await generateFiles();
+  } catch (error) {
+    logError(error);
+  }
 })();

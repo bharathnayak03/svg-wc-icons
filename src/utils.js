@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const changeCase = require('change-case');
+const chalk = require('chalk');
 
 function errorFirstCallbackToPromise(fn) {
   return (...args) => new Promise((resolve, reject) => {
@@ -50,6 +51,14 @@ function mergeConfig(src, config) {
   };
 }
 
+function logError(message) {
+  console.error(chalk.red(message));
+}
+
+function logSuccess(message) {
+  console.log(chalk.green(message));
+}
+
 module.exports = {
   errorFirstCallbackToPromise,
   readFile: errorFirstCallbackToPromise(fs.readFile),
@@ -60,4 +69,6 @@ module.exports = {
   generateClassName,
   generateCustomElementName,
   mergeConfig,
+  logSuccess,
+  logError,
 };
