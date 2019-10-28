@@ -35,6 +35,16 @@ function generateCustomElementName(fileName) {
   return `${changeCase.param(fileName.replace('.svg', ''))}-icon`;
 }
 
+function mergeConfig(src, config) {
+  return {
+    ...src,
+    plugins: [
+      ...src.plugins,
+      ...(config.plugins || []),
+    ],
+  };
+}
+
 module.exports = {
   errorFirstCallbackToPromise,
   readFile: errorFirstCallbackToPromise(fs.readFile),
@@ -44,4 +54,5 @@ module.exports = {
   generateFileName,
   generateClassName,
   generateCustomElementName,
+  mergeConfig,
 };

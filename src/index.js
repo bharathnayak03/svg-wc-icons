@@ -16,6 +16,7 @@ const {
   generateFileName,
   generateClassName,
   generateCustomElementName,
+  mergeConfig,
 } = require('./utils');
 const generate = require('./template');
 const args = require('./args');
@@ -23,9 +24,11 @@ const args = require('./args');
 const {
   src,
   dest,
+  svgoConfig: svgoConfigPath,
 } = args;
 
-const svgoInstance = new Svgo(svgoConfig);
+
+let svgoInstance;
 
 async function generateFile(options) {
   const {
@@ -63,5 +66,12 @@ async function generateFiles() {
 }
 
 (async () => {
+  let externalConfig = {};
+  if (svgoConfigPath) {
+    const svgoConfigString = await readFile(svgoConfigPath, 'utf8');
+    externalConfig = JSON.parse(svgoConfigString);
+  }
+  svgoInstance = new Svgo(mergeConfig(svgoConfig, externalConfig));
+
   await generateFiles();
 })();

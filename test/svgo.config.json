@@ -1,0 +1,11 @@
+{
+  "plugins": [{
+    "addAttributesToSVGElement": {
+      "attributes": [{
+        "fill": "currentColor",
+        "height": "2em",
+        "width": "1em"
+      }]
+    }
+  }]
+}
