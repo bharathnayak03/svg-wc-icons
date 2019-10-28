@@ -23,16 +23,21 @@ function ensureDirectoryExistence(filePath) {
   fs.mkdirSync(dirname);
 }
 
-function generateFileName(fileName) {
-  return `${changeCase.snake(fileName.replace('.svg', ''))}_icon`;
+function generateFileName(fileName, { prefix }) {
+  const prefixStr = prefix ? `${prefix}-` : '';
+  return `${changeCase.snake(prefixStr + fileName.replace('.svg', ''))}_icon`;
 }
 
-function generateClassName(fileName) {
-  return `${changeCase.pascalCase(fileName.replace('.svg', ''))}Icon`;
+function generateClassName(fileName, { prefix }) {
+  const prefixStr = prefix ? `${prefix}-` : '';
+
+  return `${changeCase.pascalCase(prefixStr + fileName.replace('.svg', ''))}Icon`;
 }
 
-function generateCustomElementName(fileName) {
-  return `${changeCase.param(fileName.replace('.svg', ''))}-icon`;
+function generateCustomElementName(fileName, { prefix }) {
+  const prefixStr = prefix ? `${prefix}-` : '';
+
+  return `${changeCase.param(prefixStr + fileName.replace('.svg', ''))}-icon`;
 }
 
 function mergeConfig(src, config) {

@@ -21,7 +21,6 @@ const { argv } = require('yargs')
     },
     prefix: {
       alias: 'p',
-      default: 'web',
       describe: 'prefix for generated custom elements',
       type: 'string',
     },

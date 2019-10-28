@@ -25,6 +25,7 @@ const {
   src,
   dest,
   svgoConfig: svgoConfigPath,
+  prefix,
 } = args;
 
 
@@ -50,9 +51,9 @@ async function generateFiles() {
   const files = await readFilesFromDirectory(src);
   files.forEach(async (fileName) => {
     const srcPath = path.resolve(src, fileName);
-    const outputFileName = generateFileName(fileName);
-    const customElementName = generateCustomElementName(fileName);
-    const className = generateClassName(fileName);
+    const outputFileName = generateFileName(fileName, { prefix });
+    const customElementName = generateCustomElementName(fileName, { prefix });
+    const className = generateClassName(fileName, { prefix });
 
     const outputPath = path.resolve(dest, `${outputFileName}.js`);
     const options = {
