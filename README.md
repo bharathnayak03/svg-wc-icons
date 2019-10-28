@@ -4,7 +4,7 @@ svg-wc-icons is a tool to convert svg icons (auto generated) into reusable web c
 
 ## Installation
 
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
+Use the node package manage to install svg-wc-icons.
 
 ```bash
 npm install -g svg-wc-icons
