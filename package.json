@@ -1,7 +1,7 @@
 {
   "name": "svg-wc-icons",
-  "version": "0.2.1",
-  "description": "Tool to generate webcomponent icons from svg files",
+  "version": "0.2.1-alpha.1",
+  "description": "Tool for generating WebComponent icons from svg files",
   "main": "lib/index.js",
   "bin": "lib/index.js",
   "author": " <bharathnayak03@gmail.com>",
