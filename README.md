@@ -14,13 +14,13 @@ npm install -g svg-wc-icons
 
 ```bash
 #basic usage
-svg-wc-icons --src './src' --dist './dist'
+svg-wc-icons --src './src' --dest './dist'
 
 #use external svgo json config
-svg-wc-icons --src './src' --dist './dist'  --svgoConfig './svgo.config.json'
+svg-wc-icons --src './src' --dest './dist'  --svgoConfig './svgo.config.json'
 
 #use custom prefix in generated webcomponents based icons
-svg-wc-icons --src './src' --dist './dist' --prefix myCompany
+svg-wc-icons --src './src' --dest './dist' --prefix myCompany
 
 ```
 
