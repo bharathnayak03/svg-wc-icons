@@ -77,6 +77,18 @@ async function generateFiles() {
 
 (async () => {
   try {
+    if (!src) {
+      const error = new Error('WebIcons: src arg not provided');
+      logError(error);
+      return;
+    }
+
+    if (!dest) {
+      const error = new Error('WebIcons: dest arg not provided');
+      logError(error);
+      return;
+    }
+
     logSuccess('WebIcons: Generating WebComponents from svgs');
     let externalConfig = {};
     if (svgoConfigPath) {
