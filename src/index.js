@@ -26,6 +26,7 @@ async function generateWebComponent(srcPath, options = {}) {
     suffix = 'icon',
     customElementName,
     componentName,
+    style,
   } = options;
 
   svgoInstance = new Svgo(mergeConfig(svgoConfig, externalConfig));
@@ -44,7 +45,7 @@ async function generateWebComponent(srcPath, options = {}) {
     svg: optimizedSvg.data,
     customElementName: customElementName
     || generateCustomElementName(fileName, { prefix, suffix }),
-    componentName: componentName || generateComponentName(fileName, { prefix, suffix }),
+    componentName: componentName || generateComponentName(fileName, { prefix, suffix, style }),
   });
 }
 

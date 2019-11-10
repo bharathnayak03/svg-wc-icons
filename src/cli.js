@@ -32,6 +32,7 @@ const {
   prefix,
   suffix,
   example,
+  style,
 } = args;
 let svgoInstance;
 
@@ -103,6 +104,7 @@ async function generateFiles() {
       outputPath,
       componentName,
       customElementName,
+      style,
     };
     await generateFile(options);
   });
