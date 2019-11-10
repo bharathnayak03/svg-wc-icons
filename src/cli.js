@@ -15,7 +15,7 @@ const {
   writeFile,
   ensureDirectoryExistence,
   generateFileName,
-  generateClassName,
+  generateComponentName,
   generateCustomElementName,
   mergeConfig,
   logSuccess,
@@ -62,13 +62,13 @@ async function generateFiles() {
     const srcPath = path.resolve(src, fileName);
     const outputFileName = generateFileName(fileName, { prefix });
     const customElementName = generateCustomElementName(fileName, { prefix });
-    const className = generateClassName(fileName, { prefix });
+    const componentName = generateComponentName(fileName, { prefix });
 
     const outputPath = path.resolve(dest, `${outputFileName}.js`);
     const options = {
       srcPath,
       outputPath,
-      className,
+      componentName,
       customElementName,
     };
     await generateFile(options);

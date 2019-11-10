@@ -2,11 +2,11 @@ function generateComponent(options) {
   const {
     svg,
     style,
-    className,
+    componentName,
     customElementName,
   } = options;
 
-  return `class ${className} extends HTMLElement {
+  return `class ${componentName} extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: 'open' });
@@ -25,7 +25,7 @@ function generateComponent(options) {
   }
 }
 
-customElements.define("${customElementName}", ${className});
+customElements.define("${customElementName}", ${componentName});
 `;
 }
 

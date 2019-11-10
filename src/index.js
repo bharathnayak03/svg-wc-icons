@@ -3,7 +3,7 @@ usage:
 const gwc = require('svg-wc-icons');
 const webComponentString = gwc(svgPath, {
   customElementName: 'user-icon',
-  className: 'UserIcon',
+  componentName: 'UserIcon',
 });
  */
 const path = require('path');
@@ -13,7 +13,7 @@ const {
   readFile,
   generateCustomElementName,
   mergeConfig,
-  generateClassName,
+  generateComponentName,
 } = require('./utils');
 const generate = require('./template');
 
@@ -24,7 +24,7 @@ async function generateWebComponent(srcPath, options = {}) {
     svgoConfig: externalConfig = {},
     prefix,
     customElementName,
-    className,
+    componentName,
   } = options;
 
   svgoInstance = new Svgo(mergeConfig(svgoConfig, externalConfig));
@@ -43,7 +43,7 @@ async function generateWebComponent(srcPath, options = {}) {
     svg: optimizedSvg.data,
     customElementName: customElementName
     || generateCustomElementName(fileName, { prefix }),
-    className: className || generateClassName(fileName, { prefix }),
+    componentName: componentName || generateComponentName(fileName, { prefix }),
   });
 }
 
