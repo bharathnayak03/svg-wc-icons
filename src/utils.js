@@ -29,7 +29,7 @@ function generateFileName(fileName, { prefix }) {
   return `${changeCase.snake(prefixStr + fileName.replace('.svg', ''))}_icon`;
 }
 
-function generateClassName(fileName, { prefix }) {
+function generateComponentName(fileName, { prefix }) {
   const prefixStr = prefix ? `${prefix}-` : '';
 
   return `${changeCase.pascalCase(prefixStr + fileName.replace('.svg', ''))}Icon`;
@@ -66,7 +66,7 @@ module.exports = {
   readFilesFromDirectory: errorFirstCallbackToPromise(fs.readdir),
   ensureDirectoryExistence,
   generateFileName,
-  generateClassName,
+  generateComponentName,
   generateCustomElementName,
   mergeConfig,
   logSuccess,
