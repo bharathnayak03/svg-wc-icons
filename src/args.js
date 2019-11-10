@@ -25,6 +25,10 @@ const { argv } = require('yargs')
       default: 'icon',
       type: 'string',
     },
+    example: {
+      describe: 'generate example.html file which uses generated web components',
+      type: 'boolean',
+    },
   });
 
 module.exports = argv;
