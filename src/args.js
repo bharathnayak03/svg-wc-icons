@@ -17,8 +17,12 @@ const { argv } = require('yargs')
       type: 'string',
     },
     prefix: {
-      alias: 'p',
       describe: 'prefix for generated custom elements',
+      type: 'string',
+    },
+    suffix: {
+      describe: 'suffix for generated custom elements',
+      default: 'icon',
       type: 'string',
     },
   });
