@@ -31,6 +31,8 @@ const {
   svgoConfig: svgoConfigPath,
   prefix,
   suffix,
+  example,
+  style,
 } = args;
 let svgoInstance;
 
@@ -50,6 +52,36 @@ async function generateFile(options) {
     flag: 'w',
   });
   logSuccess(`WebIcons: Successfully generated ${outputPath}`);
+}
+
+
+async function generateExampleHTML(files) {
+  const outputPath = path.resolve(dest, 'example.html');
+  let importString = '';
+  let outputString = '';
+
+  files.forEach(async (fileName) => {
+    const outputFileName = generateFileName(fileName, { prefix, suffix });
+    const customElementName = generateCustomElementName(fileName, { prefix, suffix });
+    importString += `<script crossorigin type="module" src="${outputFileName}.js" ></script> `;
+    outputString += `<${customElementName}></${customElementName}>
+    `;
+  });
+
+  writeFile(outputPath, `<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Title of the document</title>
+${importString}
+</head>
+
+<body>
+${outputString}
+</body>
+
+</html>`);
+  logSuccess('Successfully generated example.html');
 }
 
 async function generateFiles() {
@@ -72,9 +104,14 @@ async function generateFiles() {
       outputPath,
       componentName,
       customElementName,
+      style,
     };
     await generateFile(options);
   });
+
+  if (example) {
+    await generateExampleHTML(svgFiles);
+  }
 }
 
 (async () => {

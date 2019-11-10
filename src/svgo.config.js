@@ -66,7 +66,9 @@ module.exports = {
   }, {
     removeDimensions: true,
   }, {
-    removeAttrs: { attrs: 'fill' },
+    removeStyleElement: true,
+  }, {
+    removeAttrs: { attrs: 'fill|color' },
   }, {
     addAttributesToSVGElement: {
       attributes: [{
