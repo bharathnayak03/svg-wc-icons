@@ -14,7 +14,7 @@ function generateComponent(options) {
   connectedCallback() {
     this.shadowRoot.innerHTML = \`
     <style>
-      :host
+      :host {
         display: inline-block;
         vertical-align: middle;
       }
