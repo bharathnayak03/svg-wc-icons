@@ -4,16 +4,13 @@ const { argv } = require('yargs')
       alias: 's',
       describe: 'Source directory',
       type: 'string',
+      demandOption: true,
     },
     dest: {
       alias: 'd',
       describe: 'Destination directory',
       type: 'string',
-    },
-    output: {
-      alias: 'o',
-      describe: 'Output file',
-      type: 'string',
+      demandOption: true,
     },
     svgoConfig: {
       describe: 'SVGO config json file to override the svgo config',
