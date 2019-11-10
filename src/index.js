@@ -23,6 +23,7 @@ async function generateWebComponent(srcPath, options = {}) {
   const {
     svgoConfig: externalConfig = {},
     prefix,
+    suffix = 'icon',
     customElementName,
     componentName,
   } = options;
@@ -42,8 +43,8 @@ async function generateWebComponent(srcPath, options = {}) {
     ...options,
     svg: optimizedSvg.data,
     customElementName: customElementName
-    || generateCustomElementName(fileName, { prefix }),
-    componentName: componentName || generateComponentName(fileName, { prefix }),
+    || generateCustomElementName(fileName, { prefix, suffix }),
+    componentName: componentName || generateComponentName(fileName, { prefix, suffix }),
   });
 }
 

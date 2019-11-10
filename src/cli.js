@@ -5,6 +5,7 @@ web-icons test.svg --output test_icon.js
 web-icons --src './test/svg_files' --dest './test/dest'
 web-icons --src './test/svg_files' --dest './test/dest' --svgoConfig config.js
 web-icons --src './test/svg_files' --dest './test/dest' --prefix hr
+web-icons --src './test/svg_files' --dest './test/dest' --prefix icon --suffix component
 */
 const path = require('path');
 const Svgo = require('svgo');
@@ -29,6 +30,7 @@ const {
   dest,
   svgoConfig: svgoConfigPath,
   prefix,
+  suffix,
 } = args;
 let svgoInstance;
 
@@ -60,9 +62,9 @@ async function generateFiles() {
 
   svgFiles.forEach(async (fileName) => {
     const srcPath = path.resolve(src, fileName);
-    const outputFileName = generateFileName(fileName, { prefix });
-    const customElementName = generateCustomElementName(fileName, { prefix });
-    const componentName = generateComponentName(fileName, { prefix });
+    const outputFileName = generateFileName(fileName, { prefix, suffix });
+    const customElementName = generateCustomElementName(fileName, { prefix, suffix });
+    const componentName = generateComponentName(fileName, { prefix, suffix });
 
     const outputPath = path.resolve(dest, `${outputFileName}.js`);
     const options = {
