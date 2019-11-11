@@ -72,7 +72,7 @@ svg-wc-icons --src './material-design-icons/social/svg/production' --dest './web
 ```
 ------------
 
-##How it works
+## How it works
 This package depends on svgo to strip out unwanted markups from svgs.
 i.e. style element, color and fill atributes are stripped off from svgs so that it can be colored or styled from outside.
 then few extra attributes are added to the svg element to support external styling. (ex: fill="currentColor")
